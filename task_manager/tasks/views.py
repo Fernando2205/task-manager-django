@@ -52,7 +52,7 @@ def toggle_complete(request, task_id):
     if task:
         task.completed = not task.completed
         task.save()
-        return redirect('home')
+        return redirect(request.META.get('HTTP_REFERER', 'home'))
 
 
 def remove_task(request, task_id):

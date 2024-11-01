@@ -50,11 +50,18 @@
                         {{task.description}}
                     </p>
                 </div>
+                {%if task.completed %}
                 <!-- Right: Toggle complete mode -->
+                <a href="{%url 'toggle_complete' task.id%}">
+                    <i class="bx bxs-check-circle bx-sm text-green-500"></i>
+                </a>
+
+                {%else%}
                 <a href="{%url 'toggle_complete' task.id%}">
                     <i class="bx bx-check-circle bx-sm text-blue-500"></i>
                     <!-- <i class='bx bxs-check-circle'></i> -->
                 </a>
+                {%endif%}
             </div>
             <!-- Line -->
             <hr class="border-t border-gray-200 my-2" />
