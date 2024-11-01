@@ -15,11 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from tasks.views import home, completed, remaining, add_task, delete_task, task_detail, toggle_complete, remove_task
+from django.urls import path, include
+from tasks.views import home, completed, remaining, add_task, delete_task, task_detail, toggle_complete, remove_task, prueba
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("__reload__/", include("django_browser_reload.urls")),
     path('tasks', home, name='home'),
     path('completed', completed, name='completed'),
     path('remaining', remaining, name='remaining'),
@@ -29,4 +30,5 @@ urlpatterns = [
     path('toggle_complete/<str:task_id>',
          toggle_complete, name='toggle_complete'),
     path('remove_task/<str:task_id>', remove_task, name='remove_task'),
+    path('prueba', prueba, name='prueba')
 ]
