@@ -1,0 +1,58 @@
+{% extends 'auth_base.html' %}
+
+{% block content %}
+
+<div class="w-11/12 max-w-md mx-auto">
+    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+        <div class="p-6 sm:p-8">
+            <!-- Title -->
+            <div class="text-center mb-8">
+                <i class="bx bx-user-circle text-5xl text-blue-600"></i>
+                <h1 class="text-2xl sm:text-3xl font-bold text-gray-800 mt-4">Welcome to Task Manager</h1>
+                <p class="text-gray-500 mt-2">Please sign in to continue</p>
+            </div>
+
+            <!-- Form -->
+            <form method="post">
+                {% csrf_token %}
+                <div class="space-y-6">
+                    <!-- Username -->
+                    <div>
+                        <label class="block text-gray-700 text-sm font-semibold mb-2" for="username">
+                            Username
+                        </label>
+                        {{ form.username }}
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label class="block text-gray-700 text-sm font-semibold mb-2" for="password">
+                            Password
+                        </label>
+                        {{ form.password }}
+                    </div>
+
+                    <!-- Login Button -->
+                    <div>
+                        <button type="submit"
+                            class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 px-4 rounded-lg transition-all duration-200 flex items-center justify-center">
+                            <i class="bx bx-log-in-circle mr-2 text-xl"></i>
+                            Login
+                        </button>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Register Link -->
+            <div class="mt-8 text-center">
+                <p class="text-gray-500">Don't have an account?
+                    <a href="{% url 'register' %}"
+                        class="text-blue-600 font-semibold hover:text-blue-700 transition-colors ml-1">
+                        Register now
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

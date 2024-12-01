@@ -1,0 +1,132 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+<div class="w-11/12 md:w-3/4 mx-auto px-2 sm:px-0">
+    <div class="bg-white p-3 sm:p-6 rounded-xl shadow-md">
+        <div class="flex justify-between items-center mb-4">
+            <h2 class="text-lg sm:text-xl font-bold text-gray-800">Calendar View</h2>
+            <a href="{% url 'home' %}"
+                class="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center text-sm sm:text-base">
+                <i class="bx bx-left-arrow-alt mr-2"></i>
+                Go Back
+            </a>
+        </div>
+        <div id="calendar" class="min-h-[500px] sm:min-h-[600px]"></div>
+    </div>
+</div>
+
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js'></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<link rel="stylesheet" href="https://unpkg.com/tippy.js@6/animations/scale.css" />
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'dayGridMonth',
+            headerToolbar: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+            },
+            displayEventTime: false,
+            events: [
+                {% for task in tasks %}
+                {
+                title: '{{ task.title|escapejs }}',
+                start: '{{ task.due_date|date:"Y-m-d" }}T{{ task.due_time|time:"H:i:s" }}',
+                url: '{% url "view_task" task.id %}',
+                backgroundColor: '#f3f4f6',
+                borderColor: '#e5e7eb',
+                textColor: '#374151',
+                extendedProps: {
+                    description: '{{ task.description|escapejs|default:"No description" }}',
+                    time: '{{ task.due_time|time:"H:i" }}',
+                    status: '{{ task.completed|yesno:"Completed,Pending" }}'
+                }
+            }{% if not forloop.last %}, {% endif %}
+        {% endfor %}
+            ],
+        eventDidMount: function (info) {
+            tippy(info.el, {
+                content: `
+                        <div class="p-2">
+                            <p class="font-bold">${info.event.title}</p>
+                            <p class="text-sm">${info.event.extendedProps.description}</p>
+                            <div class="mt-2">
+                                <span class="text-sm font-medium">Time: ${info.event.extendedProps.time}</span>
+                                <span class="ml-2 text-sm font-medium">${info.event.extendedProps.status}</span>
+                            </div>
+                        </div>
+                    `,
+                allowHTML: true,
+                theme: 'light',
+                animation: 'scale'
+            });
+        }
+        });
+    calendar.render();
+    });
+</script>
+
+<style>
+    .fc {
+        font-size: 0.875rem;
+    }
+
+    @media (min-width: 640px) {
+        .fc {
+            font-size: 1rem;
+        }
+    }
+
+    .fc-toolbar-title {
+        font-size: 1.25rem !important;
+    }
+
+    @media (min-width: 640px) {
+        .fc-toolbar-title {
+            font-size: 1.5rem !important;
+        }
+    }
+
+    .fc-button {
+        background-color: #f3f4f6 !important;
+        border-color: #e5e7eb !important;
+        color: #374151 !important;
+        padding: 0.375rem 0.75rem !important;
+        font-size: 0.875rem !important;
+    }
+
+    @media (min-width: 640px) {
+        .fc-button {
+            padding: 0.5rem 1rem !important;
+            font-size: 1rem !important;
+        }
+    }
+
+    .fc-button:hover {
+        background-color: #e5e7eb !important;
+    }
+
+    .fc-button-active {
+        background-color: #e5e7eb !important;
+    }
+
+    .fc-event {
+        cursor: pointer;
+        border-radius: 0.375rem;
+        margin: 1px 0;
+        padding: 2px 4px;
+    }
+
+    .tippy-box {
+        background-color: white !important;
+        color: #374151 !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border-radius: 0.5rem;
+    }
+</style>
+{% endblock %}

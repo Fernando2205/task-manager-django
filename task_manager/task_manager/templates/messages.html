@@ -1,0 +1,24 @@
+{% load static %}
+{% if messages %}
+<div class="fixed top-16 left-1/2 transform -translate-x-1/2 w-full max-w-sm z-[100]">
+    {% for message in messages %}
+    {% if forloop.first %}
+    <div id="message" class="p-4 rounded-lg shadow-lg flex items-center justify-center space-x-3 opacity-0 transition-all duration-500
+        {% if message.tags == 'success' %}bg-green-500 text-white
+        {% elif message.tags == 'error' %}bg-red-500 text-white
+        {% elif message.tags == 'warning' %}bg-yellow-500 text-black
+        {% elif message.tags == 'info' %}bg-blue-500 text-white
+        {% endif %}">
+        <i class="bx {% if message.tags == 'success' %}bx-check-circle
+                    {% elif message.tags == 'error' %}bx-x-circle
+                    {% elif message.tags == 'warning' %}bx-error
+                    {% elif message.tags == 'info' %}bx-info-circle
+                    {% endif %} text-2xl"></i>
+        <p>{{ message }}</p>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+<script src="{% static 'js/messages.js' %}"></script>
+{% endif %}
