@@ -208,6 +208,8 @@ def create_notification(user, type, title, message):
 
 
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -236,6 +238,8 @@ class LoginView(auth_views.LoginView):
         return super().form_invalid(form)
 
     def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect('home')
         if 'next' in request.GET:
             messages.info(
                 request, 'You need to be logged in to access this page.')
