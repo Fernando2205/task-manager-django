@@ -1,37 +1,44 @@
 {% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <title>Task Manager - Organiza tus tareas eficientemente</title>
     {% tailwind_css %}
+    <script src="{% static 'js/darkMode.js' %}" defer></script>
 </head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-200 relative">
+    <!-- Toggle Button -->
+    <div class="absolute top-4 right-4 z-50">
+        <button id="darkModeToggle" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg cursor-pointer">
+            <i class="bx bx-moon text-xl dark:hidden"></i>
+            <i class="bx bx-sun text-xl text-yellow-500 hidden dark:block"></i>
+        </button>
+    </div>
 
-<body class="bg-gray-50">
     <!-- Hero Section -->
     <div class="relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 opacity-90"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-blue-600 dark:from-gray-800 dark:to-gray-900 opacity-90"></div>
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
             <div class="text-center">
                 <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-8">
                     Task Manager
-                    <span class="block text-blue-200 mt-2">Organiza tu día a día</span>
+                    <span class="block text-blue-200 dark:text-gray-400 mt-2">Organiza tu día a día</span>
                 </h1>
-                <p class="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
-                    Una plataforma intuitiva y potente diseñada para ayudarte a mantener tus tareas organizadas,
+                <p class="text-xl text-blue-100 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+                    Una plataforma intuitiva y potente diseñada para ayudarte a mantener tus tareas organizadas, 
                     cumplir con tus plazos y alcanzar tus objetivos de manera eficiente.
                 </p>
-                <div class="space-x-4">
-                    <a href="{% url 'login' %}"
-                        class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 transition-colors inline-flex items-center">
+                <div class="space-y-4 sm:space-y-0 sm:space-x-4 flex flex-col sm:flex-row justify-center items-center">
+                    <a href="{% url 'login' %}" 
+                       class="bg-white dark:bg-gray-700 text-blue-600 dark:text-gray-200 px-8 py-3 rounded-lg font-semibold hover:bg-blue-50 dark:hover:bg-gray-600 transition-colors inline-flex items-center">
                         <i class="bx bx-log-in mr-2"></i>
                         Iniciar Sesión
                     </a>
-                    <a href="{% url 'register' %}"
-                        class="bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 transition-colors inline-flex items-center">
+                    <a href="{% url 'register' %}" 
+                       class="bg-blue-700 dark:bg-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-800 dark:hover:bg-blue-600 transition-colors inline-flex items-center">
                         <i class="bx bx-user-plus mr-2"></i>
                         Registrarse
                     </a>
@@ -41,75 +48,74 @@
     </div>
 
     <!-- Stats Section -->
-    <div class="py-12 bg-white">
+    <div class="py-12 bg-white dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">Simple</div>
-                    <p class="text-gray-600">Interfaz fácil de usar</p>
+                    <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Simple</div>
+                    <p class="text-gray-600 dark:text-gray-400">Interfaz fácil de usar</p>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">Rápido</div>
-                    <p class="text-gray-600">Gestión ágil de tareas</p>
+                    <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Rápido</div>
+                    <p class="text-gray-600 dark:text-gray-400">Gestión ágil de tareas</p>
                 </div>
                 <div class="text-center">
-                    <div class="text-4xl font-bold text-blue-600 mb-2">Seguro</div>
-                    <p class="text-gray-600">Tus datos están protegidos</p>
+                    <div class="text-4xl font-bold text-blue-600 dark:text-blue-400 mb-2">Seguro</div>
+                    <p class="text-gray-600 dark:text-gray-400">Tus datos están protegidos</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Features Section -->
-    <div class="py-24 bg-gray-50">
+    <div class="py-24 bg-gray-50 dark:bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-900 mb-4">Todo lo que necesitas para mantenerte organizado</h2>
-                <p class="text-lg text-gray-600">Características simples pero poderosas para ayudarte a gestionar tus
-                    tareas efectivamente</p>
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-200 mb-4">Todo lo que necesitas para mantenerte organizado</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-400">Características simples pero poderosas para ayudarte a gestionar tus tareas efectivamente</p>
             </div>
-
+            
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div class="text-center p-6">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="bx bx-list-check text-3xl text-blue-600"></i>
+                    <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bx bx-list-check text-3xl text-blue-600 dark:text-blue-400"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Gestión de Tareas</h3>
-                    <p class="text-gray-600">Crea, organiza y rastrea tus tareas fácilmente</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-200 mb-2">Gestión de Tareas</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Crea, organiza y rastrea tus tareas fácilmente</p>
                 </div>
 
                 <div class="text-center p-6">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="bx bx-calendar text-3xl text-blue-600"></i>
+                    <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bx bx-calendar text-3xl text-blue-600 dark:text-blue-400"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Vista de Calendario</h3>
-                    <p class="text-gray-600">Visualiza tus tareas en un calendario interactivo</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-200 mb-2">Vista de Calendario</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Visualiza tus tareas en un calendario interactivo</p>
                 </div>
 
                 <div class="text-center p-6">
-                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <i class="bx bx-bell text-3xl text-blue-600"></i>
+                    <div class="bg-blue-100 dark:bg-blue-900/30 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="bx bx-bell text-3xl text-blue-600 dark:text-blue-400"></i>
                     </div>
-                    <h3 class="text-xl font-semibold text-gray-900 mb-2">Notificaciones</h3>
-                    <p class="text-gray-600">Mantente al día con notificaciones y recordatorios</p>
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-gray-200 mb-2">Notificaciones</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Mantente al día con notificaciones y recordatorios</p>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- About Me Section -->
-    <div class="py-24 bg-white">
+    <div class="py-24 bg-white dark:bg-gray-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center">
-                <h2 class="text-3xl font-bold text-gray-900 mb-8">Sobre el Desarrollador</h2>
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-gray-200 mb-8">Sobre el Desarrollador</h2>
                 <div class="max-w-3xl mx-auto">
                     <div class="mb-6">
-                        <h3 class="text-xl font-semibold text-gray-800">Delio Palacios</h3>
-                        <p class="text-gray-600">Estudiante de Ingeniería de Sistemas</p>
-                        <p class="text-gray-600">Universidad de San Buenaventura Cali</p>
+                        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-200">Delio Palacios</h3>
+                        <p class="text-gray-600 dark:text-gray-400">Estudiante de Ingeniería de Sistemas</p>
+                        <p class="text-gray-600 dark:text-gray-400">Universidad de San Buenaventura Cali</p>
                     </div>
-                    <p class="text-gray-600 mb-6">
-                        Apasionado por el desarrollo de software y la creación de soluciones que mejoren
+                    <p class="text-gray-600 dark:text-gray-400 mb-6">
+                        Apasionado por el desarrollo de software y la creación de soluciones que mejoren 
                         la productividad de las personas.
                     </p>
                 </div>
@@ -118,34 +124,31 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-gray-50 border-t border-gray-200">
+    <footer class="bg-gray-50 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="text-center md:text-left">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Contacto</h3>
-                    <p class="text-gray-600">deliopalaciosviafara@gmail.com</p>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-200 mb-2">Contacto</h3>
+                    <p class="text-gray-600 dark:text-gray-400">deliopalaciosviafara@gmail.com</p>
                     <div class="mt-4 space-x-4">
-                        <a target="_blank" href="https://github.com/Fernando2205"
-                            class="text-gray-400 hover:text-gray-500">
+                        <a target="_blank" href="https://github.com/Fernando2205" class="text-gray-400 hover:text-gray-500">
                             <i class="bx bxl-github text-2xl"></i>
                         </a>
-                        <a target="_blank" href="https://www.linkedin.com/in/delio-fernando-palacios-5bb818219/"
-                            class="text-gray-400 hover:text-gray-500">
+                        <a target="_blank" href="https://www.linkedin.com/in/delio-fernando-palacios-5bb818219/" class="text-gray-400 hover:text-gray-500">
                             <i class="bx bxl-linkedin text-2xl"></i>
                         </a>
                     </div>
                 </div>
                 <div class="text-center md:text-right">
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Task Manager</h3>
-                    <p class="text-gray-600">Proyecto desarrollado como parte del curso de</p>
-                    <p class="text-gray-600">Laboratorio de software III - 2024</p>
+                    <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-200 mb-2">Task Manager</h3>
+                    <p class="text-gray-600 dark:text-gray-400">Proyecto desarrollado como parte del curso de</p>
+                    <p class="text-gray-600 dark:text-gray-400">Laboratorio de software III - 2024</p>
                 </div>
             </div>
-            <div class="text-center mt-8 pt-8 border-t border-gray-200">
-                <p class="text-gray-600">2024 - Task Manager.</p>
+            <div class="text-center mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                <p class="text-gray-600 dark:text-gray-400">2024 - Task Manager.</p>
             </div>
         </div>
     </footer>
 </body>
-
 </html>

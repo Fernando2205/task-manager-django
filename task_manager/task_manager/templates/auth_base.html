@@ -7,10 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
     <title>Task Manager</title>
+    <script src="{% static 'js/darkMode.js' %}" defer></script>
     {% tailwind_css %}
+    <script>
+        // Apply dark mode immediately to avoid flash
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
 </head>
 
-<body class="bg-[#cfcfcf] flex flex-col items-center justify-center min-h-screen p-4">
+<body class="bg-[#cfcfcf] dark:bg-gray-900 flex flex-col items-center justify-center min-h-screen p-4 transition-colors duration-200">
     {% include 'messages.html' %}
     {% block content %}{% endblock %}
 

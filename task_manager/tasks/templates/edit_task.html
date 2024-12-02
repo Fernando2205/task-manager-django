@@ -1,52 +1,58 @@
 {% extends 'base_layout.html' %}
 
 {% block content %}
-<div class="w-[500px] mx-auto">
-    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+<div class="w-full max-w-lg mx-auto px-4 sm:px-0">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
         <form method="post" class="p-6">
             {% csrf_token %}
             <!-- Top -->
             <div class="flex justify-between items-start">
                 <div class="flex-1">
-                    <input type="text" name="title" value="{{ task.title }}"
-                        class="w-full text-2xl font-semibold {% if task.completed %}line-through text-gray-400{% else %}text-green-500{% endif %} focus:outline-none focus:ring-2 focus:ring-green-500 rounded-lg p-2"
-                        placeholder="Task title">
-                    <textarea name="description "
-                        class="resize-none w-full text-gray-600 mt-3 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-lg p-2"
-                        rows="4" placeholder="Task description">{{ task.description }}</textarea>
+                    <input type="text" 
+                           name="title" 
+                           value="{{ task.title }}" 
+                           class="w-full text-2xl font-bold {% if task.completed %}line-through text-gray-400{% else %}text-green-500{% endif %} dark:bg-gray-700 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-lg p-2"
+                           placeholder="Task title">
+                    <textarea name="description" 
+                              class="resize-none w-full text-gray-600 dark:bg-gray-700 dark:text-gray-200 mt-3 focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-lg p-2 text-base" 
+                              rows="4"
+                              placeholder="Task description">{{ task.description }}</textarea>
                 </div>
-                <a href="{% url 'toggle_complete' task.id %}"
-                    class="transform hover:scale-110 transition-transform ml-4">
-                    <i
-                        class="bx {% if task.completed %}bxs-check-circle text-green-500{% else %}bx-check-circle text-blue-500{% endif %} text-2xl"></i>
+                <a href="{% url 'toggle_complete' task.id %}" class="transform hover:scale-110 transition-transform ml-4">
+                    <i class="bx {% if task.completed %}bxs-check-circle text-green-500{% else %}bx-check-circle text-blue-500{% endif %} text-2xl"></i>
                 </a>
             </div>
 
             <!-- Divider -->
-            <hr class="my-4 border-gray-200">
+            <hr class="my-4 border-gray-200 dark:border-gray-700">
 
             <!-- Bottom -->
-            <div class="flex justify-between items-center">
+            <div class="flex flex-col space-y-4 sm:space-y-0 sm:flex-row justify-between items-center">
                 <div class="flex items-center space-x-4">
                     <div class="flex items-center space-x-2">
-                        <i class="bx bx-calendar text-gray-500"></i>
-                        <input type="date" name="due_date" value="{{ task.due_date|date:'Y-m-d' }}"
-                            class="text-gray-600 font-medium focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-lg p-2">
+                        <i class="bx bx-calendar text-gray-500 dark:text-gray-400"></i>
+                        <input type="date" 
+                               name="due_date" 
+                               value="{{ task.due_date|date:'Y-m-d' }}"
+                               class="text-gray-600 dark:bg-gray-700 dark:text-gray-200 font-medium focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-lg p-2">
                     </div>
                     <div class="flex items-center space-x-2">
-                        <i class="bx bx-time text-gray-500"></i>
-                        <input type="time" name="due_time" value="{{ task.due_time|time:'H:i' }}"
-                            class="text-gray-600 font-medium focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-lg p-2">
+                        <i class="bx bx-time text-gray-500 dark:text-gray-400"></i>
+                        <input type="time" 
+                               name="due_time" 
+                               value="{{ task.due_time|time:'H:i' }}"
+                               class="text-gray-600 dark:bg-gray-700 dark:text-gray-200 font-medium focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-lg p-2">
                     </div>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <button type="submit"
-                        class="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 flex items-center transition-all duration-200">
-                        <i class="bx bx-save mr-2"></i>
-                        Save
+                <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-2">
+                    <button type="submit" 
+                            class="flex items-center px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transform hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg">
+                        <i class="bx bx-save mr-2 text-lg hidden sm:inline"></i>
+                        <span class="hidden sm:inline">Save</span>
+                        <i class="bx bx-save text-lg sm:hidden"></i>
                     </button>
-                    <a href="{% url 'delete_task' task.id %}" class="transform hover:scale-110 transition-transform">
-                        <i class="bx bxs-trash text-red-500 text-2xl"></i>
+                    <a href="{% url 'delete_task' task.id %}" class="transform hover:scale-110 transition-transform flex-shrink-0">
+                        <i class="bx bxs-trash text-red-500 dark:text-red-400 text-2xl"></i>
                     </a>
                 </div>
             </div>
@@ -54,9 +60,9 @@
     </div>
 
     <div class="mt-6 flex justify-center">
-        <a href="{{ request.META.HTTP_REFERER }}"
-            class="px-6 py-2.5 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center transition-all duration-200">
-            <i class="bx bx-left-arrow-alt mr-2"></i>
+        <a href="{{ request.META.HTTP_REFERER }}" 
+           class="px-6 py-2.5 bg-blue-600 dark:bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transform hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg flex items-center">
+            <i class="bx bx-left-arrow-alt mr-2 text-lg"></i>
             Go Back
         </a>
     </div>

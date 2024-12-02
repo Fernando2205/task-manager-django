@@ -5,115 +5,114 @@
 <!-- Stats Cards -->
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 w-11/12 mx-auto mb-6 sm:mb-8">
     <!-- Total Tasks -->
-    <div class="w-full bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+    <div class="w-full bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
         <div class="p-4 sm:p-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-gray-700 font-bold text-lg sm:text-xl">Total Tasks</h3>
-                <div class="p-2 bg-blue-100 rounded-lg">
-                    <i class='bx bxs-category text-xl sm:text-2xl text-blue-600'></i>
+                <h3 class="text-gray-700 dark:text-gray-300 font-bold text-lg sm:text-xl">Total Tasks</h3>
+                <div class="p-2 bg-blue-100 dark:bg-blue-900/30 rounded-lg">
+                    <i class='bx bxs-category text-xl sm:text-2xl text-blue-600 dark:text-blue-400'></i>
                 </div>
             </div>
-            <p class="text-2xl sm:text-3xl font-bold text-gray-800 mt-2">{{ total_tasks }}</p>
+            <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-200 mt-2">{{ total_tasks }}</p>
         </div>
     </div>
 
     <!-- Completed Tasks -->
-    <div class="w-full bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+    <div class="w-full bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
         <div class="p-4 sm:p-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-gray-700 font-bold text-lg sm:text-xl">Completed</h3>
-                <div class="p-2 bg-green-100 rounded-lg">
-                    <i class='bx bxs-check-circle text-xl sm:text-2xl text-green-600'></i>
+                <h3 class="text-gray-700 dark:text-gray-300 font-bold text-lg sm:text-xl">Completed</h3>
+                <div class="p-2 bg-green-100 dark:bg-green-900/30 rounded-lg">
+                    <i class='bx bxs-check-circle text-xl sm:text-2xl text-green-600 dark:text-green-400'></i>
                 </div>
             </div>
-            <p class="text-2xl sm:text-3xl font-bold text-gray-800 mt-2">{{ completed_tasks }}</p>
+            <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-200 mt-2">{{ completed_tasks }}</p>
         </div>
     </div>
 
     <!-- Pending Tasks -->
-    <div class="w-full bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+    <div class="w-full bg-white dark:bg-gray-800 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
         <div class="p-4 sm:p-6">
             <div class="flex justify-between items-center">
-                <h3 class="text-gray-700 font-bold text-lg sm:text-xl">Pending</h3>
-                <div class="p-2 bg-red-100 rounded-lg">
-                    <i class='bx bxs-time text-xl sm:text-2xl text-red-600'></i>
+                <h3 class="text-gray-700 dark:text-gray-300 font-bold text-lg sm:text-xl">Pending</h3>
+                <div class="p-2 bg-red-100 dark:bg-red-900/30 rounded-lg">
+                    <i class='bx bxs-time text-xl sm:text-2xl text-red-600 dark:text-red-400'></i>
                 </div>
             </div>
-            <p class="text-2xl sm:text-3xl font-bold text-gray-800 mt-2">{{ pending_tasks }}</p>
+            <p class="text-2xl sm:text-3xl font-bold text-gray-800 dark:text-gray-200 mt-2">{{ pending_tasks }}</p>
         </div>
     </div>
 </div>
 
 <!-- Filter Navigation -->
 <div class="flex justify-center w-full mb-4 sm:mb-6 px-2 sm:px-0">
-    <nav
-        class="bg-white transition-all-[1s] shadow-md w-full sm:w-10/12 md:w-3/6 rounded-2xl p-3 sm:p-4 flex flex-row justify-around text-sm sm:text-base">
-        <a href="?status=all{% if sort_by %}&sort={{ sort_by }}{% endif %}"
-            class="{% if active_filter == 'all' %}text-blue-400{% else %}text-gray-400{% endif %} transition duration-300 ease-out hover:ease-in hover:text-blue-500 font-semibold py-1 px-2 sm:px-3 flex items-center gap-1">
-            <i class="bx bxs-category"></i>All Tasks
+    <nav class="bg-white dark:bg-gray-800 transition-all-[1s] shadow-md w-full sm:w-10/12 md:w-2/3 rounded-2xl p-3 sm:p-4 flex flex-row justify-around text-sm sm:text-base">
+        <a href="?status=all{% if sort_by %}&sort={{ sort_by }}{% endif %}" 
+           class="text-{% if active_filter == 'all' %}blue-400{% else %}gray-400 dark:text-gray-500{% endif %} transition duration-300 ease-out hover:ease-in hover:text-blue-500 dark:hover:text-blue-400 font-semibold py-1 px-2 sm:px-3 flex items-center gap-1">
+            <i class="bx bxs-category"></i><span class="hidden sm:inline">All Tasks</span>
         </a>
-        <span class="text-gray-400">|</span>
+        <span class="text-gray-400 dark:text-gray-600">|</span>
         <a href="?status=completed{% if sort_by %}&sort={{ sort_by }}{% endif %}"
-            class="font-semibold {% if active_filter == 'completed' %}text-green-400{% else %}text-gray-400{% endif %} py-1 px-2 sm:px-3 flex items-center gap-1 transition duration-300 ease-out hover:ease-in hover:text-green-400">
-            <i class="bx bxs-badge-check"></i>Completed
+           class="font-semibold {% if active_filter == 'completed' %}text-green-400{% else %}text-gray-400 dark:text-gray-500{% endif %} py-1 px-2 sm:px-3 flex items-center gap-1 transition duration-300 ease-out hover:ease-in hover:text-green-400 dark:hover:text-green-300">
+            <i class="bx bxs-badge-check"></i><span class="hidden sm:inline">Completed</span>
         </a>
-        <span class="text-gray-400">|</span>
+        <span class="text-gray-400 dark:text-gray-600">|</span>
         <a href="?status=pending{% if sort_by %}&sort={{ sort_by }}{% endif %}"
-            class="font-semibold {% if active_filter == 'pending' %}text-red-400{% else %}text-gray-400{% endif %} py-1 px-2 sm:px-3 flex items-center gap-1 transition duration-300 ease-out hover:ease-in hover:text-red-400">
-            <i class="bx bxs-sad"></i>To do
+           class="font-semibold {% if active_filter == 'pending' %}text-red-400{% else %}text-gray-400 dark:text-gray-500{% endif %} py-1 px-2 sm:px-3 flex items-center gap-1 transition duration-300 ease-out hover:ease-in hover:text-red-400 dark:hover:text-red-300">
+            <i class="bx bxs-sad"></i><span class="hidden sm:inline">To do</span>
         </a>
-        <span class="text-gray-400">|</span>
+        <span class="text-gray-400 dark:text-gray-600">|</span>
         <a href="?sort={% if sort_by == 'asc' %}desc{% else %}asc{% endif %}{% if active_filter != 'all' %}&status={{ active_filter }}{% endif %}"
-            class="font-semibold text-gray-400 hover:text-yellow-400 py-1 px-2 sm:px-3 flex items-center gap-1 transition duration-300 ease-out hover:ease-in">
-            <i class="bx bx-sort{% if sort_by == 'desc' %}-down{% else %}-up{% endif %}"></i>
-            Due Date
+           class="font-semibold text-gray-400 dark:text-gray-500 hover:text-yellow-400 dark:hover:text-yellow-300 py-1 px-2 sm:px-3 flex items-center gap-1 transition duration-300 ease-out hover:ease-in">
+            <i class="bx bx-sort{% if sort_by == 'desc' %}-down{% else %}-up{% endif %}"></i><span class="hidden sm:inline">Due Date</span>
         </a>
     </nav>
 </div>
+
 <!-- Tasks Grid -->
 <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 w-11/12 mx-auto">
     {% for task in tasks %}
-    <div class="flex flex-col shadow-md bg-white rounded-xl p-2 sm:p-3 overflow-hidden">
+    <div class="flex flex-col shadow-md bg-white dark:bg-gray-800 rounded-xl p-2 sm:p-3 overflow-hidden">
         <!-- Top -->
         <div class="flex justify-between items-start">
             <div class="overflow-hidden">
                 <a href="{% url 'view_task' task.id %}">
                     <h1
-                        class="text-lg sm:text-xl font-semibold {% if task.completed %}line-through text-gray-400{% else %}text-green-500{% endif %} truncate">
+                        class="text-lg sm:text-xl font-semibold {% if task.completed %}line-through text-gray-400 dark:text-gray-500{% else %}text-green-500 dark:text-green-400{% endif %} truncate">
                         {{ task.title }}
                     </h1>
                 </a>
-                <p class="text-gray-500 mt-1 text-sm sm:text-base truncate">
+                <p class="text-gray-500 dark:text-gray-400 mt-1 text-sm sm:text-base truncate">
                     {{ task.description|truncatechars:35 }}
                 </p>
             </div>
             <a href="{% url 'toggle_complete' task.id %}"
                 class="transform hover:scale-110 transition-transform flex-shrink-0">
                 <i
-                    class="bx {% if task.completed %}bxs-check-circle text-green-500{% else %}bx-check-circle text-blue-500{% endif %} text-xl sm:text-2xl"></i>
+                    class="bx {% if task.completed %}bxs-check-circle text-green-500 dark:text-green-400{% else %}bx-check-circle text-blue-500 dark:text-blue-400{% endif %} text-xl sm:text-2xl"></i>
             </a>
         </div>
 
         <!-- Divider -->
-        <hr class="my-2 border-gray-200">
+        <hr class="my-2 border-gray-200 dark:border-gray-700">
 
         <!-- Bottom -->
         <div class="flex justify-between items-center">
-            <h2 class="text-gray-500 font-bold text-sm sm:text-base truncate">
-                {{ task.due_date }} <span class="font-medium text-gray-400">{{ task.due_time }}</span>
+            <h2 class="text-gray-500 dark:text-gray-400 font-bold text-sm sm:text-base truncate">
+                {{ task.due_date }} <span class="font-medium text-gray-400 dark:text-gray-500">{{ task.due_time }}</span>
             </h2>
             <a href="{% url 'delete_task' task.id %}"
                 class="transform hover:scale-110 transition-transform flex-shrink-0">
-                <i class="bx bxs-trash text-red-500 text-xl sm:text-2xl"></i>
+                <i class="bx bxs-trash text-red-500 dark:text-red-400 text-xl sm:text-2xl"></i>
             </a>
         </div>
     </div>
     {% empty %}
     <div class="col-span-full text-center py-6 sm:py-8">
-        <i class="bx bx-task text-3xl sm:text-4xl text-gray-400 mb-2"></i>
-        <p class="text-gray-600 mb-4 text-sm sm:text-base">No tasks found</p>
+        <i class="bx bx-task text-3xl sm:text-4xl text-gray-400 dark:text-gray-500 mb-2"></i>
+        <p class="text-gray-600 dark:text-gray-400 mb-4 text-sm sm:text-base">No tasks found</p>
         <a href="{% url 'add_task' %}"
-            class="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors text-sm sm:text-base">
+            class="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transition-colors text-sm sm:text-base">
             <i class="bx bx-plus mr-2"></i>
             Add New Task
         </a>

@@ -2,24 +2,24 @@
 
 {% block content %}
 <div class="max-w-md mx-auto">
-    <div class="bg-white rounded-xl shadow-md overflow-hidden">
+    <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden">
         <div class="p-6">
             <div class="text-center">
-                <i class="bx bx-trash text-red-500 text-4xl mb-4"></i>
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">Delete Task</h2>
-                <p class="text-gray-600 mb-6">
-                    Are you sure you want to delete "<span class="font-semibold text-gray-800">{{ task.title }}</span>"?
+                <i class="bx bx-trash text-red-500 dark:text-red-400 text-4xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">Delete Task</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6">
+                    Are you sure you want to delete "<span class="font-semibold text-gray-800 dark:text-gray-200">{{ task.title }}</span>"?
                     <br>This action cannot be undone.
                 </p>
             </div>
 
             <div class="flex justify-center space-x-3">
                 <a href="{{ request.META.HTTP_REFERER }}"
-                    class="px-4 py-2 text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200 transition-colors">
+                    class="px-4 py-2 text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors">
                     Cancel
                 </a>
                 <a href="{% url 'remove_task' task.id %}"
-                    class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transform hover:-translate-y-0.5 transition-all">
+                    class="px-4 py-2 bg-red-600 dark:bg-red-500 text-white rounded-lg hover:bg-red-700 dark:hover:bg-red-600 transform hover:-translate-y-0.5 transition-all">
                     Delete Task
                 </a>
             </div>

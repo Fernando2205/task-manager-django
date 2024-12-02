@@ -2,9 +2,9 @@
 
 {% block content %}
 <div class="w-11/12 md:w-3/4 mx-auto px-2 sm:px-0">
-    <div class="bg-white p-3 sm:p-6 rounded-xl shadow-md">
+    <div class="bg-white dark:bg-gray-800 p-3 sm:p-6 rounded-xl shadow-md">
         <div class="flex justify-between items-center mb-4">
-            <h2 class="text-lg sm:text-xl font-bold text-gray-800">Calendar View</h2>
+            <h2 class="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200">Calendar View</h2>
             <a href="{% url 'home' %}"
                 class="px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center text-sm sm:text-base">
                 <i class="bx bx-left-arrow-alt mr-2"></i>
@@ -38,9 +38,9 @@
                 title: '{{ task.title|escapejs }}',
                 start: '{{ task.due_date|date:"Y-m-d" }}T{{ task.due_time|time:"H:i:s" }}',
                 url: '{% url "view_task" task.id %}',
-                backgroundColor: '#f3f4f6',
-                borderColor: '#e5e7eb',
-                textColor: '#374151',
+                backgroundColor: '{% if task.completed %}#4caf50{% else %}#2196f3{% endif %}',
+                borderColor: '{% if task.completed %}#388e3c{% else %}#1976d2{% endif %}',
+                textColor: '#ffffff',
                 extendedProps: {
                     description: '{{ task.description|escapejs|default:"No description" }}',
                     time: '{{ task.due_time|time:"H:i" }}',
@@ -127,6 +127,74 @@
         color: #374151 !important;
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         border-radius: 0.5rem;
+    }
+
+    /* Dark mode styles */
+    .dark .fc {
+        background-color: #1f2937;
+        color: #d1d5db;
+    }
+
+    .dark .fc-toolbar-title {
+        color: #d1d5db !important;
+    }
+
+    .dark .fc-button {
+        background-color: #374151 !important;
+        border-color: #4b5563 !important;
+        color: #d1d5db !important;
+    }
+
+    .dark .fc-button:hover {
+        background-color: #4b5563 !important;
+    }
+
+    .dark .fc-button-active {
+        background-color: #4b5563 !important;
+    }
+
+    .dark .fc-event {
+        background-color: #4b5563 !important;
+        border-color: #6b7280 !important;
+        color: #d1d5db !important;
+    }
+
+    .dark .tippy-box {
+        background-color: #374151 !important;
+        color: #d1d5db !important;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Custom scrollbar styles */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+    .dark ::-webkit-scrollbar-track {
+        background: #2d3748;
+    }
+
+    .dark ::-webkit-scrollbar-thumb {
+        background: #4a5568;
+    }
+
+    .dark ::-webkit-scrollbar-thumb:hover {
+        background: #2d3748;
     }
 </style>
 {% endblock %}

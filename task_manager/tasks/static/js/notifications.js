@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
 
                 if (response.ok) {
-                    notificationItem.classList.remove('bg-blue-50');
+                    notificationItem.classList.remove('bg-blue-50', 'dark:bg-blue-900/20');
+                    notificationItem.classList.add('bg-white', 'dark:bg-gray-800');
                     this.remove();
                     updateUnreadCount();
                 }
@@ -104,6 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+
     if (markAllReadBtn) {
         markAllReadBtn.addEventListener('click', async function () {
             try {
@@ -116,7 +118,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 if (response.ok) {
                     document.querySelectorAll('.notification-item').forEach(item => {
-                        item.classList.remove('bg-blue-50');
+                        item.classList.remove('bg-blue-50', 'dark:bg-blue-900/20');
+                        item.classList.add('bg-white', 'dark:bg-gray-800');
                         item.querySelector('.mark-read-btn')?.remove();
                     });
                     const badge = notificationBtn.querySelector('span');
@@ -127,6 +130,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+
     // Delete all notifications
     if (deleteAllBtn) {
         deleteAllBtn.addEventListener('click', async function () {
