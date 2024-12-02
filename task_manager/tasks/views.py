@@ -78,7 +78,8 @@ def add_task(request):
             return redirect('home')
 
     context = {
-        'origin_url': request.META.get('HTTP_REFERER')
+        'origin_url': request.META.get('HTTP_REFERER'),
+        'unread_notifications_count': Notification.objects.filter(user=request.user, is_read=False).count()
     }
     return render(request, 'add_task.html', context)
 
@@ -86,7 +87,12 @@ def add_task(request):
 @login_required
 def delete_task(request, task_id):
     task = Task.objects.get(id=task_id, user=request.user)
-    return render(request, 'delete.html', {'task': task})
+    context = {
+        'task': task,
+        'notifications': Notification.objects.filter(user=request.user).order_by('-created_at')[:5],
+        'unread_notifications_count': Notification.objects.filter(user=request.user, is_read=False).count()
+    }
+    return render(request, 'delete.html', context)
 
 
 @login_required
@@ -181,7 +187,12 @@ def mark_all_notifications_read(request):
 def calendar_view(request):
     tasks = Task.objects.filter(
         user=request.user).order_by('due_date', 'due_time')
-    return render(request, 'calendar_view.html', {'tasks': tasks})
+    context = {
+        'tasks': tasks,
+        'notifications': Notification.objects.filter(user=request.user).order_by('-created_at')[:5],
+        'unread_notifications_count': Notification.objects.filter(user=request.user, is_read=False).count()
+    }
+    return render(request, 'calendar_view.html', context)
 
 
 @login_required
