@@ -39,7 +39,7 @@ Task Manager es una aplicación diseñada para ayudarte a organizar y gestionar 
 1. **Clonar el Repositorio**
 
     ```bash
-    git clone https://github.com/tuusuario/task-manager.git
+    git clone https://github.com/Fernando2205/task-manager-django.git
     ```
 
 2. **Entrar al Directorio del Proyecto**
