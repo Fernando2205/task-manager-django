@@ -49,7 +49,7 @@
     <nav
         class="bg-white transition-all-[1s] shadow-md w-full sm:w-10/12 md:w-3/6 rounded-2xl p-3 sm:p-4 flex flex-row justify-around text-sm sm:text-base">
         <a href="?status=all{% if sort_by %}&sort={{ sort_by }}{% endif %}"
-            class="text-{% if active_filter == 'all' %}blue-400{% else %}gray-400{% endif %} transition duration-300 ease-out hover:ease-in hover:text-blue-500 font-semibold py-1 px-2 sm:px-3 flex items-center gap-1">
+            class="{% if active_filter == 'all' %}text-blue-400{% else %}text-gray-400{% endif %} transition duration-300 ease-out hover:ease-in hover:text-blue-500 font-semibold py-1 px-2 sm:px-3 flex items-center gap-1">
             <i class="bx bxs-category"></i>All Tasks
         </a>
         <span class="text-gray-400">|</span>
