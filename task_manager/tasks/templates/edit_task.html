@@ -44,17 +44,25 @@
                                class="text-gray-600 dark:bg-gray-700 dark:text-gray-200 font-medium focus:outline-none focus:ring-2 focus:ring-gray-300 rounded-lg p-2">
                     </div>
                 </div>
-                <div class="flex flex-col sm:flex-row items-center space-y-4 sm:space-y-0 sm:space-x-2">
+                <div class="hidden sm:flex items-center space-x-2">
                     <button type="submit" 
                             class="flex items-center px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transform hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg">
-                        <i class="bx bx-save mr-2 text-lg hidden sm:inline"></i>
-                        <span class="hidden sm:inline">Save</span>
-                        <i class="bx bx-save text-lg sm:hidden"></i>
+                        <i class="bx bx-save mr-2 text-lg"></i>
+                        Save
                     </button>
-                    <a href="{% url 'delete_task' task.id %}" class="transform hover:scale-110 transition-transform flex-shrink-0">
+                    <a href="{% url 'delete_task' task.id %}" class="transform hover:scale-110 transition-transform">
                         <i class="bx bxs-trash text-red-500 dark:text-red-400 text-2xl"></i>
                     </a>
                 </div>
+            </div>
+            <div class="flex sm:hidden justify-center items-center mt-4 space-x-2">
+                <button type="submit" 
+                        class="flex items-center px-4 py-2 bg-blue-600 dark:bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-700 dark:hover:bg-blue-600 transform hover:-translate-y-0.5 transition-all duration-200 shadow-md hover:shadow-lg">
+                    <i class="bx bx-save text-lg"></i>
+                </button>
+                <a href="{% url 'delete_task' task.id %}" class="transform hover:scale-110 transition-transform flex-shrink-0">
+                    <i class="bx bxs-trash text-red-500 dark:text-red-400 text-2xl"></i>
+                </a>
             </div>
         </form>
     </div>
